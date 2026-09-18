@@ -514,3 +514,39 @@ ul {
         grid-template-columns: 1fr 1.5fr;
     }
 }
+/* --- Стили для картинок, которые мы добавили --- */
+
+/* Картинки в карточках особенностей и домиков */
+.feature-card img,
+.house-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Чтобы картинка не растягивалась, а обрезалась */
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+/* Картинка в активном элементе активности */
+.activity-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* Карта в контактах */
+.contacts__map {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Для планшетов и десктопов можно увеличить высоту картинок в домиках */
+@media (min-width: 768px) {
+    .house-card img {
+        height: 250px;
+    }
+}
