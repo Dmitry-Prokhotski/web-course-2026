@@ -1,542 +1,299 @@
-/* --- Базовые сбросы и переменные --- */
+/* --- Базовые стили --- */
 :root {
-    --color-bg: #f4f7f6;
-    --color-dark: #1a2a3a;
-    --color-green: #3b8c5a;
-    --color-light-green: #a3d9b1;
-    --color-text: #333;
-    --color-white: #fff;
-    --font-main: 'Arial', sans-serif;
-    --container-width: 1200px;
+    --green: #3b8c5a;
+    --green-light: #4caf6a;
+    --dark: #1e2a32;
+    --dark-blue: #2c3e50;
+    --bg: #f0f4f3;
+    --white: #ffffff;
+    --text: #222;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.5;
+    font-family: 'Arial', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.4;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
 
 .container {
-    width: 100%;
-    max-width: var(--container-width);
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
-/* --- Общие стили для заголовков и кнопок --- */
-.section-title {
-    font-size: 24px;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    text-transform: lowercase;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border: none;
-    font-size: 14px;
-}
-
-.btn--primary {
-    background-color: var(--color-green);
-    color: var(--color-white);
-}
-
-.btn--primary:hover {
-    background-color: #2e7048;
-}
-
-.btn--dark {
-    background-color: var(--color-dark);
-    color: var(--color-white);
-}
-
-.btn--dark:hover {
-    background-color: #0f1a24;
-}
-
-/* --- Шапка (Flexbox) --- */
+/* --- Шапка (зелёная) --- */
 .header {
-    background-color: var(--color-white);
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+    background: var(--green);
+    color: var(--white);
+    padding: 12px 0;
 }
-
 .header__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .logo {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 900;
     text-transform: lowercase;
-    color: var(--color-green);
 }
-
-/* Гамбургер (только для мобильных) */
 .burger {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
 }
-
 .burger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-dark);
-    transition: 0.3s;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
 }
+.nav { display: none; } /* скрыто на мобильном */
 
-/* Навигация скрыта на мобильных */
-.nav {
-    display: none;
-}
-
-/* --- Герой-секция --- */
-.hero {
-    padding: 40px 0;
-}
-
-.hero__title {
-    font-size: 48px;
-    font-weight: 900;
+/* --- Заголовки секций --- */
+.section-title {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.15;
     text-transform: lowercase;
-    line-height: 1;
-    margin-bottom: 15px;
-    color: var(--color-dark);
-}
-
-.hero__subtitle {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.hero__desc {
-    font-size: 14px;
-    color: #666;
     margin-bottom: 20px;
 }
 
+/* --- Кнопки --- */
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.btn--green { background: var(--green); color: #fff; }
+.btn--green:hover { background: #2e7048; }
+.btn--dark { background: var(--dark); color: #fff; }
+.btn--dark:hover { background: #101820; }
+
+/* --- Герой --- */
+.hero { padding: 30px 0 40px; }
+.hero__title {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+}
+.hero__subtitle {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.hero__desc {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 20px;
+}
 .hero__image {
-    margin-top: 30px;
-    border-radius: 8px;
+    margin-top: 25px;
+    border-radius: 10px;
     overflow: hidden;
 }
+.hero__image img { width: 100%; height: 220px; object-fit: cover; }
 
-/* --- Секция особенностей (Grid) --- */
-.features {
-    padding: 40px 0;
-}
-
-.features__grid {
+/* --- Комфорт --- */
+.comfort { padding: 40px 0; }
+.comfort__grid {
     display: grid;
-    grid-template-columns: 1fr; /* На мобильном 1 колонка */
+    grid-template-columns: 1fr;
     gap: 20px;
 }
-
-.feature-card {
-    background-color: var(--color-white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+.comfort-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
 }
-
-.feature-card h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
+.comfort-card h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
     text-transform: lowercase;
 }
-
-.feature-list {
-    margin-bottom: 15px;
-}
-
-.feature-list li {
-    font-size: 14px;
-    margin-bottom: 8px;
-    padding-left: 15px;
+.comfort-card ul { margin-bottom: 15px; }
+.comfort-card li {
+    font-size: 13px;
+    margin-bottom: 6px;
+    padding-left: 14px;
     position: relative;
 }
-
-.feature-list li::before {
-    content: "•";
-    color: var(--color-green);
+.comfort-card li::before {
+    content: "";
     position: absolute;
-    left: 0;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+}
+.comfort-card img {
+    width: 100%; height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
 }
 
 /* --- Баннер --- */
 .banner {
-    background-color: var(--color-dark);
-    color: var(--color-white);
+    background: var(--dark);
+    color: #fff;
     padding: 40px 0;
     text-align: center;
     margin: 40px 0;
 }
-
-.banner__content p {
-    font-size: 14px;
-    margin-bottom: 10px;
-    opacity: 0.8;
+.banner__top {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 15px;
 }
-
-.banner__content h2 {
-    font-size: 32px;
+.banner__title {
+    font-size: 34px;
     font-weight: 900;
     text-transform: uppercase;
 }
 
-/* --- Развлечения --- */
-.activities {
-    padding: 40px 0;
-}
-
-.activities__list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
+/* --- Активности --- */
+.activities { padding: 40px 0; }
 .activity-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    background-color: var(--color-white);
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid #ddd;
+}
+.activity-item--active {
+    background: var(--green);
+    color: #fff;
     border-radius: 8px;
-    border: 1px solid #eee;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 15px;
+    flex-wrap: wrap;
+    border-bottom: none;
+    margin: 8px 0;
 }
-
-.activity-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
 .activity-num {
     font-size: 12px;
     color: #999;
-    width: 30px;
+    width: 24px;
 }
-
+.activity-item--active .activity-num { color: #fff; opacity: 0.8; }
 .activity-name {
-    flex-grow: 1;
-    font-weight: bold;
+    flex: 1;
+    font-weight: 700;
     font-size: 14px;
     text-transform: lowercase;
 }
-
 .activity-price {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 14px;
 }
-
-.activity-item--active {
-    background-color: var(--color-green);
-    color: var(--color-white);
-    border-color: var(--color-green);
-}
-
-.activity-item--active .activity-num,
-.activity-item--active .activity-price {
-    color: var(--color-white);
-}
-
 .activity-desc {
-    display: none; /* Скрыто на мобильном */
-}
-
-/* --- Домики (Grid) --- */
-.houses {
-    padding: 40px 0;
-}
-
-.houses__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-.house-card {
-    background-color: var(--color-white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.house-card h3 {
-    font-size: 18px;
-    text-transform: lowercase;
-    margin-bottom: 10px;
-}
-
-.house-price {
-    font-size: 24px;
-    font-weight: 900;
-    margin-bottom: 15px;
-}
-
-.house-features {
-    margin-bottom: 20px;
-}
-
-.house-features li {
-    font-size: 14px;
-    margin-bottom: 5px;
-    padding-left: 15px;
-    position: relative;
-}
-
-.house-features li::before {
-    content: "•";
-    color: var(--color-green);
-    position: absolute;
-    left: 0;
-}
-
-/* --- Контакты и форма --- */
-.contacts {
-    padding: 40px 0;
-    background-color: var(--color-white);
-}
-
-.contacts__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-}
-
-.info-block {
-    margin-bottom: 20px;
-}
-
-.info-block h4 {
-    font-size: 16px;
-    margin-bottom: 5px;
-    text-transform: lowercase;
-}
-
-.info-block p {
-    font-size: 14px;
-    color: #666;
-}
-
-.info-block--phone a {
-    display: block;
-    font-weight: bold;
-    color: var(--color-dark);
-    font-size: 16px;
-}
-
-/* Форма */
-.feedback-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.form-group label {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 14px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    min-height: 44px; /* Требование touch-friendly */
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-green);
-    box-shadow: 0 0 0 2px rgba(59, 140, 90, 0.2);
-}
-
-/* --- Подвал --- */
-.footer {
-    padding: 30px 0;
-    background-color: var(--color-dark);
-    color: var(--color-white);
-}
-
-.footer__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-}
-
-.footer__logo {
-    font-size: 20px;
-    font-weight: 900;
-    text-transform: lowercase;
-}
-
-.footer__copy,
-.footer__design {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-/* =========================================
-   МЕДИАЗАПРОСЫ (Mobile First)
-   ========================================= */
-
-/* Планшет: 768px - 1199px */
-@media (min-width: 768px) {
-    .section-title {
-        font-size: 32px;
-    }
-
-    /* Сетка особенностей в 2 колонки */
-    .features__grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    /* Сетка домиков в 2 колонки */
-    .houses__grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    /* Контакты: 2 колонки (инфо + форма) */
-    .contacts__grid {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-    }
-
-    /* Показываем описание в активном элементе */
-    .activity-item--active {
-        flex-wrap: wrap;
-    }
-    .activity-desc {
-        display: block;
-        width: 100%;
-        margin-top: 10px;
-        font-size: 13px;
-        opacity: 0.9;
-    }
-
-    /* Навигация появляется, гамбургер скрывается */
-    .burger {
-        display: none;
-    }
-    .nav {
-        display: flex;
-        gap: 20px;
-    }
-    .nav__link {
-        font-size: 14px;
-        font-weight: bold;
-        transition: color 0.3s;
-    }
-    .nav__link:hover {
-        color: var(--color-green);
-    }
-
-    .header__inner {
-        justify-content: space-between;
-    }
-}
-
-/* Десктоп: от 1200px */
-@media (min-width: 1200px) {
-    .section-title {
-        font-size: 40px;
-    }
-
-    .hero__title {
-        font-size: 72px;
-    }
-
-    /* Увеличиваем отступы */
-    .features, .activities, .houses, .contacts {
-        padding: 60px 0;
-    }
-
-    /* Сетка особенностей можно оставить 2 колонки, но сделать их шире */
-    .features__grid {
-        gap: 30px;
-    }
-
-    /* В контактах делаем 3 колонки: инфо, телефоны, форма */
-    /* Но для простоты оставим 2, просто сделаем форму шире */
-    .contacts__grid {
-        grid-template-columns: 1fr 1.5fr;
-    }
-}
-/* --- Стили для картинок, которые мы добавили --- */
-
-/* Картинки в карточках особенностей и домиков */
-.feature-card img,
-.house-card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover; /* Чтобы картинка не растягивалась, а обрезалась */
-    border-radius: 6px;
-    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 6px;
 }
-
-/* Картинка в активном элементе активности */
 .activity-img {
     width: 100%;
-    height: 150px;
+    height: 120px;
     object-fit: cover;
     border-radius: 6px;
     margin-top: 10px;
 }
 
-/* Карта в контактах */
-.contacts__map {
+/* --- Домики --- */
+.houses { padding: 40px 0; }
+.houses__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+.house-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+.house-card h3 {
+    font-size: 16px;
+    text-transform: lowercase;
+    margin-bottom: 6px;
+}
+.house-price {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+.house-card ul { margin-bottom: 15px; }
+.house-card li {
+    font-size: 13px;
+    margin-bottom: 5px;
+    padding-left: 14px;
+    position: relative;
+}
+.house-card li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+}
+.house-card img {
+    width: 100%; height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+/* --- Маршрут --- */
+.route { padding: 40px 0; }
+.route__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.route-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 16px;
+}
+.route-card--big {
+    background: var(--dark);
+    color: #fff;
+}
+.route-card h4 {
+    font-size: 15px;
+    margin-bottom: 6px;
+    text-transform: lowercase;
+}
+.route-card p {
+    font-size: 12px;
+    color: #666;
+}
+.route-card--big p { color: #ccc; }
+.route-card--phone a {
+    display: block;
+    font-weight: 700;
+    color: var(--green);
+}
+.route__map {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -544,9 +301,110 @@ ul {
     margin-top: 20px;
 }
 
-/* Для планшетов и десктопов можно увеличить высоту картинок в домиках */
+/* --- Отзывы --- */
+.reviews { padding: 40px 0; }
+.reviews__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+.review-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 18px;
+}
+.review-card h4 {
+    font-size: 15px;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+}
+.review-card p {
+    font-size: 13px;
+    color: #555;
+}
+.review-card--image {
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+.review-card--image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+.review-card__overlay {
+    background: var(--green);
+    color: #fff;
+    padding: 18px;
+}
+.review-card__overlay h4 {
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+.review-card__overlay p {
+    color: #e0f0e5;
+    font-size: 13px;
+}
+
+/* --- Футер --- */
+.footer {
+    background: var(--dark);
+    color: #fff;
+    padding: 25px 0;
+    margin-top: 40px;
+}
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+.footer__logo { font-weight: 900; text-transform: lowercase; }
+.footer__copy, .footer__design { font-size: 12px; opacity: 0.7; }
+
+/* =========================================
+   МЕДИАЗАПРОСЫ (Mobile First)
+   ========================================= */
+
+/* Планшет: 768px+ */
 @media (min-width: 768px) {
-    .house-card img {
-        height: 250px;
+    .section-title { font-size: 30px; }
+    .hero__title { font-size: 72px; }
+
+    /* Показываем навигацию, скрываем гамбургер */
+    .burger { display: none; }
+    .nav { display: flex; gap: 18px; }
+    .nav__link {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: lowercase;
+        transition: opacity 0.3s;
     }
+    .nav__link:hover { opacity: 0.7; }
+
+    .comfort__grid { grid-template-columns: 1fr 1fr; }
+    .houses__grid { grid-template-columns: 1fr 1fr; }
+    .reviews__grid { grid-template-columns: 1fr 1fr; }
+
+    .route__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .route-card--big { grid-column: span 1; }
+}
+
+/* Десктоп: 1200px+ */
+@media (min-width: 1200px) {
+    .section-title { font-size: 38px; }
+    .hero__title { font-size: 96px; }
+
+    .hero__image img { height: 350px; }
+    .comfort-card img,
+    .house-card img { height: 220px; }
+
+    .route__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .route-card--big { grid-column: span 1; }
 }
