@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камчатка — Лендинг</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container header__inner">
+            <a href="#" class="logo">камчатка</a>
+            <!-- Гамбургер для мобильных -->
+            <button class="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav">
+                <a href="#" class="nav__link">О нас</a>
+                <a href="#" class="nav__link">Территория</a>
+                <a href="#" class="nav__link">Развлечения</a>
+                <a href="#" class="nav__link">Цены</a>
+                <a href="#" class="nav__link">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero__title">камчатка</h1>
+            <p class="hero__subtitle">насладись природой в кемпинге расположенном на берегу тихого океана</p>
+            <p class="hero__desc">с комфортом как в отеле, вкусной едой и свежевыловленными морепродуктами. наслаждайтесь отдыхом на вулканах, купанием в термальных источниках и незабываемой атмосферой тихого океана и гор камчатки</p>
+            <a href="#" class="btn btn--primary">проверить даты</a>
+            <div class="hero__image">
+                <!-- Заглушка для иллюстрации -->
+                <img src="https://placehold.co/1200x400/2c3e50/ffffff?text=Иллюстрация+Камчатки" alt="Пейзаж Камчатки">
+            </div>
+        </div>
+    </section>
+
+    <!-- О кемпинге -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">комфорт как в отеле<br>в 10 километрах<br>от цивилизации</h2>
+            <div class="features__grid">
+                <div class="feature-card">
+                    <h3>уютные номера</h3>
+                    <ul class="feature-list">
+                        <li>вид из окна на океан</li>
+                        <li>кухня со всем необходимым для готовки</li>
+                        <li>душ и туалет в каждом номере</li>
+                        <li>банные принадлежности</li>
+                        <li>удобная кровать со своим бельем</li>
+                    </ul>
+                    <img src="https://placehold.co/400x250/34495e/ffffff?text=Номер" alt="Уютный номер">
+                </div>
+                <div class="feature-card">
+                    <h3>оборудованная территория</h3>
+                    <ul class="feature-list">
+                        <li>ресторан</li>
+                        <li>детская площадка</li>
+                        <li>мангалы с беседками</li>
+                        <li>дровяная баня на берегу океана</li>
+                        <li>бесплатная парковка</li>
+                    </ul>
+                    <img src="https://placehold.co/400x250/34495e/ffffff?text=Территория" alt="Территория кемпинга">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Баннер -->
+    <section class="banner">
+        <div class="container">
+            <div class="banner__content">
+                <p>почувствуй, как наслаждение рыбой встречается с величием Тихого океана</p>
+                <h2>ВКУСНО И КРАСИВО</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Развлечения (Список) -->
+    <section class="activities">
+        <div class="container">
+            <h2 class="section-title">захватывающие<br>приключения<br>и умиротворяющие прогулки</h2>
+            <div class="activities__list">
+                <div class="activity-item">
+                    <span class="activity-num">01</span>
+                    <span class="activity-name">вулканы</span>
+                    <span class="activity-price">16 000 ₽</span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-num">02</span>
+                    <span class="activity-name">термальные источники</span>
+                    <span class="activity-price">5 000 ₽</span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-num">03</span>
+                    <span class="activity-name">серфинг</span>
+                    <span class="activity-price">11 000 ₽</span>
+                </div>
+                <!-- Активный элемент -->
+                <div class="activity-item activity-item--active">
+                    <span class="activity-num">04</span>
+                    <span class="activity-name">вертолетные прогулки</span>
+                    <span class="activity-price">32 000 ₽</span>
+                    <p class="activity-desc">насладитесь живописными видами на вулканы и океан с высоты птичьего полета</p>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-num">05</span>
+                    <span class="activity-name">рыбалка</span>
+                    <span class="activity-price">5 000 ₽</span>
+                </div>
+                <div class="activity-item">
+                    <span class="activity-num">06</span>
+                    <span class="activity-name">конные прогулки</span>
+                    <span class="activity-price">4 000 ₽</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Выбор домика -->
+    <section class="houses">
+        <div class="container">
+            <h2 class="section-title">выбери домик,<br>для твоего идеального<br>отдыха</h2>
+            <div class="houses__grid">
+                <div class="house-card">
+                    <h3>скандинавский домик</h3>
+                    <p class="house-price">24 000 ₽</p>
+                    <ul class="house-features">
+                        <li>2 спальных места</li>
+                        <li>32 м²</li>
+                        <li>с видом на океан</li>
+                        <li>посуда, чистые белье, фен и утюг</li>
+                    </ul>
+                    <a href="#" class="btn btn--dark">проверить даты</a>
+                    <img src="https://placehold.co/400x250/2c3e50/ffffff?text=Домик" alt="Скандинавский домик">
+                </div>
+                <div class="house-card">
+                    <h3>купольный шатер</h3>
+                    <p class="house-price">36 000 ₽</p>
+                    <ul class="house-features">
+                        <li>4 спальных места</li>
+                        <li>48 м²</li>
+                        <li>с видом на океан</li>
+                        <li>посуда, чистые белье, фен и утюг</li>
+                    </ul>
+                    <a href="#" class="btn btn--dark">проверить даты</a>
+                    <img src="https://placehold.co/400x250/2c3e50/ffffff?text=Шатер" alt="Купольный шатер">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты и форма -->
+    <section class="contacts">
+        <div class="container">
+            <h2 class="section-title">нас легко найти<br>и невозможно<br>забыть</h2>
+            <div class="contacts__grid">
+                <div class="contacts__info">
+                    <div class="info-block">
+                        <h4>добраться на машине</h4>
+                        <p>укажем в каком месте свернуть на грунтовую дорогу по трассе А-474 до вулканов</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>добраться на автобусе</h4>
+                        <p>районный автобусом до зеленой рощи, а потом на такси до кемпинга</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>добраться на самолете</h4>
+                        <p>до аэропорта Елизово, а потом на такси до кемпинга</p>
+                    </div>
+                    <div class="info-block info-block--phone">
+                        <a href="tel:+79101234567">+7 (910) 123 45-67</a>
+                        <a href="tel:+79108913456">+7 (910) 891 34-56</a>
+                        <p>круглосуточно, без выходных</p>
+                    </div>
+                </div>
+
+                <!-- Форма обратной связи -->
+                <form class="feedback-form" action="#" method="POST">
+                    <h3>Остались вопросы?</h3>
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Ваше сообщение" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__logo">камчатка</div>
+            <p class="footer__copy">© 2023 camp</p>
+            <p class="footer__design">Design by GAS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
