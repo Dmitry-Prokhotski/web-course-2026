@@ -1,3 +1,18 @@
+/* Подключаем современный шрифт (опционально, но сильно улучшает вид) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --primary-color: #6366f1; /* Индиго */
+    --primary-hover: #4f46e5;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,118 +20,202 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 60px;
+    min-height: 100vh;
 }
 
 .app {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
+    transition: all 0.3s ease;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: var(--text-main);
 }
 
+/* --- Поле ввода --- */
 .input-group {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 #task-input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#task-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 #add-btn {
-    padding: 10px 15px;
-    background-color: #28a745;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
 }
 
 #add-btn:hover {
-    background-color: #218838;
+    background-color: var(--primary-hover);
 }
 
+#add-btn:active {
+    transform: scale(0.97);
+}
+
+/* --- Статистика --- */
 .stats {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 20px;
     text-align: right;
+    background: #f9fafb;
+    padding: 8px 12px;
+    border-radius: 8px;
 }
 
+/* --- Фильтры --- */
 .filters {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 8px;
+    margin-bottom: 20px;
+    background: #f9fafb;
+    padding: 5px;
+    border-radius: 12px;
 }
 
 .filter-btn {
-    padding: 5px 10px;
-    background: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    flex: 1;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    color: var(--text-main);
+    background: rgba(0, 0, 0, 0.03);
 }
 
 .filter-btn.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    background-color: white;
+    color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* --- Список задач --- */
 #task-list {
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .task-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    padding: 14px 16px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    animation: fadeIn 0.3s ease;
 }
 
-.task-item:last-child {
-    border-bottom: none;
+.task-item:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .task-content {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
     flex-grow: 1;
+    overflow: hidden; /* Чтобы длинный текст не ломал верстку */
+}
+
+/* Стилизация чекбокса (делаем его крупнее и приятнее) */
+.task-content input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color); /* Современный способ покрасить чекбокс */
+    flex-shrink: 0;
+}
+
+.task-content span {
+    font-size: 15px;
+    word-break: break-word;
+    transition: all 0.3s ease;
 }
 
 /* Обязательный класс из задания */
 .completed {
     text-decoration: line-through;
-    opacity: 0.6;
+    opacity: 0.5;
+    color: var(--text-muted);
 }
 
+/* --- Кнопка удаления --- */
 .delete-btn {
-    background-color: #dc3545;
-    color: white;
+    background-color: transparent;
+    color: var(--text-muted);
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
+    background-color: #fee2e2; /* Светло-красный фон */
+    color: var(--danger-color);
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
 }
