@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --primary-color: #6366f1; /* Индиго */
+    --primary-color: #6366f1; 
     --primary-hover: #4f46e5;
-    --bg-color: #f3f4f6;
-    --card-bg: #ffffff;
+    --bg-color: #08348c;
+    --card-bg: #73e1fd;
     --text-main: #1f2937;
     --text-muted: #6b7280;
     --border-color: #e5e7eb;
