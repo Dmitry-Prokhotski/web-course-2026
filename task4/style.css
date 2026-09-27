@@ -1,0 +1,219 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 50px 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    
+    /* ФОН: Эстетичная ферма + теплый тон */
+    /* Если хочешь свою картинку, положи её в task4 и замени ссылку на url('имя_файла.jpg') */
+    background-image: 
+        linear-gradient(rgba(139, 69, 19, 0.75), rgba(210, 105, 30, 0.65)), /* Коричнево-оранжевое тонирование */
+        url('https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=1920&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: multiply; /* Смешивание картинки и цвета для эффекта "сепии" */
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.game-container {
+    background-color: rgba(253, 245, 230, 0.95); /* Кремовый с легкой прозрачностью */
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 450px;
+    border: 3px solid #d2691e; /* Оранжево-коричневая рамка */
+    backdrop-filter: blur(2px); /* Легкое размытие фона под контейнером */
+}
+
+h1 {
+    text-align: center;
+    color: #5c3a21; 
+    margin-top: 0;
+    font-size: 28px;
+    text-shadow: 1px 1px 2px rgba(210, 105, 30, 0.3);
+}
+
+.rules {
+    font-size: 14px;
+    color: #8b5a2b; 
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #cd853f; 
+    border-radius: 8px;
+    background-color: #fffaf0;
+    color: #5c3a21;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    min-width: 120px;
+}
+
+input:focus {
+    border-color: #d2691e; 
+    box-shadow: 0 0 8px rgba(210, 105, 30, 0.6);
+}
+
+input:disabled {
+    background-color: #e9e0d0;
+    cursor: not-allowed;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#checkBtn {
+    background-color: #d2691e; 
+    flex-grow: 1;
+}
+
+#checkBtn:hover:not(:disabled) {
+    background-color: #b8520a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#checkBtn:disabled {
+    background-color: #a09b95;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#newGameBtn {
+    background-color: #8b4513; 
+    width: 100%;
+}
+
+#newGameBtn:hover {
+    background-color: #6b3410;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.message {
+    min-height: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.message.error { 
+    color: #fff; 
+    background-color: #dc3545; 
+}
+
+.message.success { 
+    color: #fff; 
+    background-color: #28a745; 
+    animation: pulse 1s infinite alternate;
+}
+
+.message.info { 
+    color: #5c3a21; 
+    background-color: #f5deb3; 
+    border: 1px solid #deb887;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.02); }
+}
+
+.stats {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #8b4513;
+    background-color: #fffaf0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed #cd853f;
+}
+
+.history-container {
+    border-top: 2px solid #deb887;
+    padding-top: 15px;
+}
+
+.history-container h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #5c3a21;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    background-color: #fffaf0;
+    border-radius: 8px;
+    border: 1px solid #deb887;
+}
+
+/* Стилизация скроллбара */
+ul::-webkit-scrollbar {
+    width: 8px;
+}
+ul::-webkit-scrollbar-track {
+    background: #fdf5e6;
+    border-radius: 8px;
+}
+ul::-webkit-scrollbar-thumb {
+    background: #cd853f;
+    border-radius: 8px;
+}
+ul::-webkit-scrollbar-thumb:hover {
+    background: #d2691e;
+}
+
+li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f5deb3;
+    font-size: 15px;
+    color: #4a2c16;
+    display: flex;
+    justify-content: space-between;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:nth-child(even) {
+    background-color: #fdf5e6;
+}
