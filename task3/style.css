@@ -1,14 +1,13 @@
-/* Подключаем современный шрифт (опционально, но сильно улучшает вид) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
     --primary-color: #6366f1; 
     --primary-hover: #4f46e5;
-    --bg-color: #08348c;
-    --card-bg: #73e1fd;
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --border-color: #e5e7eb;
+    --bg-color: #aecaff;
+    --card-bg: #111c97;
+    --text-main: #fafafa;
+    --text-muted: #ffffff;
+    --border-color: #334e83;
     --danger-color: #ef4444;
     --danger-hover: #dc2626;
 }
@@ -22,6 +21,7 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
+    background-image: url('seaaa.jpg');
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@ body {
     background: var(--card-bg);
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    box-shadow: 0 10px 25px -5px rgba(5, 11, 129, 0.877), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     width: 100%;
     max-width: 520px;
     transition: all 0.3s ease;
@@ -47,7 +47,6 @@ h1 {
     color: var(--text-main);
 }
 
-/* --- Поле ввода --- */
 .input-group {
     display: flex;
     gap: 12px;
@@ -73,7 +72,7 @@ h1 {
 #add-btn {
     padding: 12px 20px;
     background-color: var(--primary-color);
-    color: white;
+    color: rgb(252, 252, 253);
     border: none;
     border-radius: 10px;
     font-size: 15px;
@@ -91,24 +90,22 @@ h1 {
     transform: scale(0.97);
 }
 
-/* --- Статистика --- */
 .stats {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-muted);
     margin-bottom: 20px;
     text-align: right;
-    background: #f9fafb;
+    background: #077aed;
     padding: 8px 12px;
     border-radius: 8px;
 }
 
-/* --- Фильтры --- */
 .filters {
     display: flex;
     gap: 8px;
     margin-bottom: 20px;
-    background: #f9fafb;
+    background: #077aed;
     padding: 5px;
     border-radius: 12px;
 }
@@ -137,7 +134,6 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Список задач --- */
 #task-list {
     list-style: none;
     display: flex;
@@ -172,10 +168,9 @@ h1 {
     align-items: center;
     gap: 14px;
     flex-grow: 1;
-    overflow: hidden; /* Чтобы длинный текст не ломал верстку */
+    overflow: hidden; 
 }
 
-/* Стилизация чекбокса (делаем его крупнее и приятнее) */
 .task-content input[type="checkbox"] {
     width: 20px;
     height: 20px;
@@ -190,14 +185,12 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Обязательный класс из задания */
 .completed {
     text-decoration: line-through;
     opacity: 0.5;
     color: var(--text-muted);
 }
 
-/* --- Кнопка удаления --- */
 .delete-btn {
     background-color: transparent;
     color: var(--text-muted);
@@ -212,7 +205,7 @@ h1 {
 }
 
 .delete-btn:hover {
-    background-color: #fee2e2; /* Светло-красный фон */
+    background-color: #f38d8d; 
     color: var(--danger-color);
 }
 

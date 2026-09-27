@@ -11,6 +11,10 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+    scroll-behavior: smooth; /* Плавный переход по якорям */
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background: var(--bg);
@@ -19,8 +23,13 @@ body {
 }
 
 img { max-width: 100%; display: block; }
-a { text-decoration: none; color: inherit; }
+a { text-decoration: none; color: inherit; cursor: pointer; }
 ul { list-style: none; }
+
+/* Отступ при скролле, чтобы шапка не перекрывала заголовки */
+section {
+    scroll-margin-top: 70px;
+}
 
 .container {
     max-width: 1200px;
@@ -28,11 +37,14 @@ ul { list-style: none; }
     padding: 0 15px;
 }
 
-/* --- Шапка (зелёная) --- */
+/* --- Шапка --- */
 .header {
     background: var(--green);
     color: var(--white);
     padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 .header__inner {
     display: flex;
@@ -43,21 +55,49 @@ ul { list-style: none; }
     font-size: 18px;
     font-weight: 900;
     text-transform: lowercase;
+    transition: opacity 0.3s;
 }
+.logo:hover { opacity: 0.8; }
+.logo:focus {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* Гамбургер */
 .burger {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+.burger:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+.burger:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+.burger:active {
+    transform: scale(0.95);
 }
 .burger span {
-    width: 22px;
+    width: 24px;
     height: 2px;
     background: var(--white);
+    transition: transform 0.3s, width 0.3s;
 }
-.nav { display: none; } /* скрыто на мобильном */
+.burger:hover span:nth-child(2) {
+    width: 18px;
+}
+
+/* Навигация (скрыта на мобильном) */
+.nav { display: none; }
 
 /* --- Заголовки секций --- */
 .section-title {
@@ -76,14 +116,36 @@ ul { list-style: none; }
     font-weight: 700;
     font-size: 14px;
     text-align: center;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
     border: none;
     cursor: pointer;
 }
 .btn--green { background: var(--green); color: #fff; }
-.btn--green:hover { background: #2e7048; }
+.btn--green:hover {
+    background: #2e7048;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(59, 140, 90, 0.3);
+}
+.btn--green:focus {
+    outline: 3px solid rgba(59, 140, 90, 0.4);
+    outline-offset: 2px;
+}
+.btn--green:active {
+    transform: translateY(0);
+}
 .btn--dark { background: var(--dark); color: #fff; }
-.btn--dark:hover { background: #101820; }
+.btn--dark:hover {
+    background: #101820;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.btn--dark:focus {
+    outline: 3px solid rgba(30, 42, 50, 0.4);
+    outline-offset: 2px;
+}
+.btn--dark:active {
+    transform: translateY(0);
+}
 
 /* --- Герой --- */
 .hero { padding: 30px 0 40px; }
@@ -229,6 +291,11 @@ ul { list-style: none; }
     border-radius: 10px;
     padding: 18px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.house-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 .house-card h3 {
     font-size: 16px;
@@ -273,6 +340,10 @@ ul { list-style: none; }
     background: var(--white);
     border-radius: 8px;
     padding: 16px;
+    transition: transform 0.3s;
+}
+.route-card:hover {
+    transform: translateY(-3px);
 }
 .route-card--big {
     background: var(--dark);
@@ -292,6 +363,16 @@ ul { list-style: none; }
     display: block;
     font-weight: 700;
     color: var(--green);
+    transition: color 0.3s;
+}
+.route-card--phone a:hover {
+    color: #2e7048;
+    text-decoration: underline;
+}
+.route-card--phone a:focus {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+    border-radius: 3px;
 }
 .route__map {
     width: 100%;
@@ -347,12 +428,72 @@ ul { list-style: none; }
     font-size: 13px;
 }
 
+/* =========================================
+   ФОРМА ОБРАТНОЙ СВЯЗИ
+   ========================================= */
+.feedback {
+    padding: 40px 0;
+    background: var(--white);
+}
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 500px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.form-group label {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: lowercase;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 44px;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+    outline: none;
+}
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.form-group input:hover,
+.form-group textarea:hover {
+    border-color: #bbb;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--green);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(59, 140, 90, 0.15);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+}
+.feedback-form .btn {
+    align-self: flex-start;
+    min-width: 160px;
+    min-height: 44px;
+}
+
 /* --- Футер --- */
 .footer {
     background: var(--dark);
     color: #fff;
     padding: 25px 0;
-    margin-top: 40px;
 }
 .footer__inner {
     display: flex;
@@ -368,33 +509,48 @@ ul { list-style: none; }
    МЕДИАЗАПРОСЫ (Mobile First)
    ========================================= */
 
-/* Планшет: 768px+ */
 @media (min-width: 768px) {
     .section-title { font-size: 30px; }
     .hero__title { font-size: 72px; }
 
-    /* Показываем навигацию, скрываем гамбургер */
+    /* Скрываем гамбургер, показываем навигацию */
     .burger { display: none; }
-    .nav { display: flex; gap: 18px; }
+    .nav {
+        display: flex;
+        gap: 18px;
+    }
     .nav__link {
         font-size: 13px;
         font-weight: 700;
         text-transform: lowercase;
-        transition: opacity 0.3s;
+        padding: 6px 10px;
+        border-radius: 4px;
+        transition: background 0.3s, color 0.3s;
     }
-    .nav__link:hover { opacity: 0.7; }
+    /* Hover для ссылок */
+    .nav__link:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+    /* Focus для клавиатуры */
+    .nav__link:focus {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+    }
+    /* Active при клике */
+    .nav__link:active {
+        background: rgba(255, 255, 255, 0.25);
+    }
 
     .comfort__grid { grid-template-columns: 1fr 1fr; }
     .houses__grid { grid-template-columns: 1fr 1fr; }
     .reviews__grid { grid-template-columns: 1fr 1fr; }
 
-    .route__grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .route__grid { grid-template-columns: 1fr 1fr; }
     .route-card--big { grid-column: span 1; }
+
+    .feedback-form { max-width: 600px; }
 }
 
-/* Десктоп: 1200px+ */
 @media (min-width: 1200px) {
     .section-title { font-size: 38px; }
     .hero__title { font-size: 96px; }

@@ -8,30 +8,30 @@
 </head>
 <body>
 
-    <!-- Шапка (зелёная) -->
+    <!-- Шапка -->
     <header class="header">
         <div class="container header__inner">
-            <a href="#" class="logo">камчатка</a>
+            <a href="#hero" class="logo">камчатка</a>
             <button class="burger" aria-label="Меню">
                 <span></span><span></span><span></span>
             </button>
             <nav class="nav">
-                <a href="#" class="nav__link">о нас</a>
-                <a href="#" class="nav__link">территория</a>
-                <a href="#" class="nav__link">развлечения</a>
-                <a href="#" class="nav__link">цены</a>
-                <a href="#" class="nav__link">контакты</a>
+                <a href="#comfort" class="nav__link">о нас</a>
+                <a href="#houses" class="nav__link">домики</a>
+                <a href="#activities" class="nav__link">развлечения</a>
+                <a href="#route" class="nav__link">как добраться</a>
+                <a href="#feedback" class="nav__link">контакты</a>
             </nav>
         </div>
     </header>
 
     <!-- Герой -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="container">
             <h1 class="hero__title">камчатка</h1>
             <p class="hero__subtitle">насладись природой в кемпинге расположенном на берегу тихого океана</p>
             <p class="hero__desc">с комфортом как в отеле, вкусной едой и свежевыловленными морепродуктами. наслаждайтесь отдыхом на вулканах, купанием в термальных источниках и незабываемой атмосферой тихого океана и гор камчатки</p>
-            <a href="#" class="btn btn--green">проверить даты</a>
+            <a href="#feedback" class="btn btn--green">проверить даты</a>
             <div class="hero__image">
                 <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" alt="Пейзаж Камчатки">
             </div>
@@ -39,7 +39,7 @@
     </section>
 
     <!-- Комфорт -->
-    <section class="comfort">
+    <section class="comfort" id="comfort">
         <div class="container">
             <h2 class="section-title">комфорт как в отеле<br>в 10 километрах<br>от цивилизации</h2>
             <div class="comfort__grid">
@@ -77,8 +77,8 @@
         </div>
     </section>
 
-    <!-- Активности (список с ценами) -->
-    <section class="activities">
+    <!-- Активности -->
+    <section class="activities" id="activities">
         <div class="container">
             <h2 class="section-title">захватывающие<br>приключения<br>и умиротворяющие прогулки</h2>
 
@@ -98,13 +98,10 @@
                 <span class="activity-price">11 000 ₽</span>
             </div>
 
-            <!-- Активный зелёный -->
-            <div class="activity-item activity-item--active">
+            <div class="activity-item">
                 <span class="activity-num">04</span>
                 <span class="activity-name">вертолетные прогулки</span>
                 <span class="activity-price">32 000 ₽</span>
-                <p class="activity-desc">насладитесь живописными видами на вулканы и океан с высоты птичьего полета</p>
-                <img src="https://images.unsplash.com/photo-1533619043865-1c2e2f32ff2f?auto=format&fit=crop&w=400&q=80" alt="Вертолет" class="activity-img">
             </div>
 
             <div class="activity-item">
@@ -121,7 +118,7 @@
     </section>
 
     <!-- Домики -->
-    <section class="houses">
+    <section class="houses" id="houses">
         <div class="container">
             <h2 class="section-title">выбери домик,<br>для твоего идеального<br>отдыха</h2>
             <div class="houses__grid">
@@ -134,7 +131,7 @@
                         <li>с видом на океан</li>
                         <li>посуда, чистое белье, фен и утюг</li>
                     </ul>
-                    <a href="#" class="btn btn--dark">проверить даты</a>
+                    <a href="#feedback" class="btn btn--dark">проверить даты</a>
                     <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=600&q=80" alt="Скандинавский домик">
                 </div>
                 <div class="house-card">
@@ -146,7 +143,7 @@
                         <li>с видом на океан</li>
                         <li>посуда, чистое белье, фен и утюг</li>
                     </ul>
-                    <a href="#" class="btn btn--dark">проверить даты</a>
+                    <a href="#feedback" class="btn btn--dark">проверить даты</a>
                     <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=600&q=80" alt="Купольный шатер">
                 </div>
             </div>
@@ -154,7 +151,7 @@
     </section>
 
     <!-- Как добраться -->
-    <section class="route">
+    <section class="route" id="route">
         <div class="container">
             <h2 class="section-title">нас легко найти<br>и невозможно<br>забыть</h2>
             <div class="route__grid">
@@ -197,6 +194,28 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Форма обратной связи -->
+    <section class="feedback" id="feedback">
+        <div class="container">
+            <h2 class="section-title">остались вопросы?<br>напишите нам</h2>
+            <form class="feedback-form">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Ваш email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Ваше сообщение" required></textarea>
+                </div>
+                <button type="submit" class="btn btn--green">Отправить</button>
+            </form>
         </div>
     </section>
 

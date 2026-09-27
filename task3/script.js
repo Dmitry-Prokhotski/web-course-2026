@@ -1,26 +1,21 @@
-// 1. Состояние приложения (массив объектов)
 let tasks = [];
 let currentFilter = 'all'; // 'all', 'active', 'completed'
 let nextId = 1;
 
-// 2. Получаем ссылки на DOM-элементы
 const taskInput = document.getElementById('task-input');
 const addBtn = document.getElementById('add-btn');
 const taskList = document.getElementById('task-list');
 const statsEl = document.getElementById('stats');
 const filterBtns = document.querySelectorAll('.filter-btn');
 
-// 3. Функция добавления задачи
 function addTask() {
-    const text = taskInput.value.trim(); // Убираем пробелы по краям
+    const text = taskInput.value.trim();
     
-    // Проверка на пустую строку (пункт 2 ТЗ)
     if (text === '') {
         alert('Задача не может быть пустой!');
         return;
     }
 
-    // Создаем объект задачи
     const newTask = {
         id: nextId++,
         text: text,
@@ -141,5 +136,4 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Первоначальная отрисовка (на случай, если задачи уже есть, но у нас пустой массив)
 render();
