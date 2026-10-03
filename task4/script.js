@@ -1,10 +1,8 @@
-// --- Состояние приложения ---
 let secretNumber = [];      
 let attempts = 0;           
 let history = [];           
 let isGameOver = false;     
 
-// --- DOM элементы ---
 const guessInput = document.getElementById('guessInput');
 const checkBtn = document.getElementById('checkBtn');
 const newGameBtn = document.getElementById('newGameBtn');
@@ -12,7 +10,6 @@ const messageEl = document.getElementById('message');
 const attemptsEl = document.getElementById('attemptsCount');
 const historyList = document.getElementById('historyList');
 
-// --- Функции логики ---
 
 function generateSecretNumber() {
     const digits = [];
@@ -58,7 +55,6 @@ function renderHistory() {
     historyList.innerHTML = ''; 
     history.forEach(record => {
         const li = document.createElement('li');
-        // Немного улучшил вывод, чтобы было красивее
         li.innerHTML = `<span><strong>${record.guessStr}</strong></span> 
                         <span>🐂 ${record.bulls} | 🐄 ${record.cows}</span>`;
         historyList.appendChild(li);
@@ -129,7 +125,6 @@ function handleCheckClick() {
     }
 }
 
-// --- Инициализация ---
 checkBtn.addEventListener('click', handleCheckClick);
 newGameBtn.addEventListener('click', startNewGame);
 

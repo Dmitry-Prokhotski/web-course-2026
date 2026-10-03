@@ -5,15 +5,13 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     
-    /* ФОН: Эстетичная ферма + теплый тон */
-    /* Если хочешь свою картинку, положи её в task4 и замени ссылку на url('имя_файла.jpg') */
     background-image: 
         linear-gradient(rgba(139, 69, 19, 0.75), rgba(210, 105, 30, 0.65)), /* Коричнево-оранжевое тонирование */
         url('https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=1920&auto=format&fit=crop'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-blend-mode: multiply; /* Смешивание картинки и цвета для эффекта "сепии" */
+    background-blend-mode: multiply; 
     
     display: flex;
     justify-content: center;
@@ -27,8 +25,8 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     width: 100%;
     max-width: 450px;
-    border: 3px solid #d2691e; /* Оранжево-коричневая рамка */
-    backdrop-filter: blur(2px); /* Легкое размытие фона под контейнером */
+    border: 3px solid #d2691e;
+    backdrop-filter: blur(2px);
 }
 
 h1 {
@@ -185,7 +183,6 @@ ul {
     border: 1px solid #deb887;
 }
 
-/* Стилизация скроллбара */
 ul::-webkit-scrollbar {
     width: 8px;
 }
