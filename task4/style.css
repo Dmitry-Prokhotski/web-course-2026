@@ -6,7 +6,7 @@ body {
     box-sizing: border-box;
     
     background-image: 
-        linear-gradient(rgba(139, 69, 19, 0.75), rgba(210, 105, 30, 0.65)), /* Коричнево-оранжевое тонирование */
+        linear-gradient(rgba(139, 69, 19, 0.75), rgba(210, 105, 30, 0.65)),
         url('https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=1920&auto=format&fit=crop'); 
     background-size: cover;
     background-position: center;
@@ -19,7 +19,7 @@ body {
 }
 
 .game-container {
-    background-color: rgba(253, 245, 230, 0.95); /* Кремовый с легкой прозрачностью */
+    background-color: rgba(253, 245, 230, 0.95); 
     padding: 35px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
