@@ -16,53 +16,18 @@ const levelDisplay = document.getElementById('level');
 const messageDisplay = document.getElementById('message');
 
 const COLORS = [0, 1, 2, 3];
-const SHOW_DELAY = 600;
-const ACTIVE_TIME = 400;
+const SHOW_DELAY = 650;
+const ACTIVE_TIME = 450;
 
-// --- АУДИО (Web Audio API) ---
-// Создаем контекст один раз
-let audioCtx = null;
-
-function initAudio() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-}
-
-// Частоты для каждого цвета (чтобы звучало приятно)
-const FREQUENCIES = [261.63, 329.63, 392.00, 523.25]; // До, Ми, Соль, До (октава выше)
-
-function playSound(index) {
-    if (!audioCtx) return;
-    
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    
-    oscillator.type = 'sine';
-    oscillator.frequency.value = FREQUENCIES[index];
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    
-    // Плавное затухание, чтобы не было щелчков
-    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
-    
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.3);
-}
-
-// --- Вспомогательная функция задержки ---
+// --- Задержка через Promise + setTimeout ---
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// --- Подсветка и звук ---
+// --- Подсветка кнопки ---
 function flashButton(index) {
     const btn = btns[index];
     btn.classList.add('active');
-    playSound(index); // Играем звук
-    
     setTimeout(() => {
         btn.classList.remove('active');
     }, ACTIVE_TIME);
@@ -71,8 +36,6 @@ function flashButton(index) {
 // --- Логика игры ---
 
 function startGame() {
-    initAudio(); // Инициализируем звук по клику пользователя (требование браузеров)
-    
     gameState.sequence = [];
     gameState.playerSequence = [];
     gameState.level = 0;
@@ -81,8 +44,8 @@ function startGame() {
     gameState.isWaiting = false;
     
     levelDisplay.textContent = '0';
-    messageDisplay.textContent = 'Игра началась!';
-    messageDisplay.style.color = '#a29bfe';
+    messageDisplay.textContent = 'WATCH...';
+    messageDisplay.style.color = '#00ffff';
     
     nextRound();
 }
@@ -97,18 +60,17 @@ async function nextRound() {
     gameState.level++;
     levelDisplay.textContent = gameState.level;
 
-    // Добавляем новый цвет
     const randomColor = COLORS[Math.floor(Math.random() * COLORS.length)];
     gameState.sequence.push(randomColor);
     gameState.playerSequence = [];
 
-    messageDisplay.textContent = 'Смотри внимательно...';
-    messageDisplay.style.color = '#f1c40f';
+    messageDisplay.textContent = 'WATCH...';
+    messageDisplay.style.color = '#ffee00';
 
     await showSequence();
     
-    messageDisplay.textContent = 'Твой ход!';
-    messageDisplay.style.color = '#2ecc71';
+    messageDisplay.textContent = 'YOUR TURN!';
+    messageDisplay.style.color = '#00ff88';
     gameState.isShowing = false;
     gameState.isWaiting = true;
     board.classList.remove('blocked');
@@ -142,7 +104,7 @@ async function handlePlayerClick(index) {
 
     if (gameState.playerSequence.length === gameState.sequence.length) {
         gameState.isWaiting = false;
-        await delay(1000);
+        await delay(900);
         nextRound();
     }
 }
@@ -154,27 +116,14 @@ function gameOver() {
     
     board.classList.add('blocked');
     
-    messageDisplay.textContent = `Игра окончена! Ваш уровень: ${gameState.level}`;
-    messageDisplay.style.color = '#e74c3c';
-    
-    // Звук ошибки
-    if (audioCtx) {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.5);
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.5);
-    }
+    messageDisplay.textContent = `GAME OVER — LEVEL ${gameState.level}`;
+    messageDisplay.style.color = '#ff0055';
+    messageDisplay.style.textShadow = '0 0 10px #ff0055, 0 0 30px #ff0055, 0 0 60px #ff0055';
 }
 
 // --- Слушатели ---
 startBtn.addEventListener('click', () => {
+    messageDisplay.style.textShadow = '0 0 10px #00ffff, 0 0 20px #00ffff';
     startGame();
 });
 
