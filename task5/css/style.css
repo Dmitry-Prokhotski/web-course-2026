@@ -171,7 +171,6 @@ body {
         0 0 20px #ff00ff;
 }
 
-/* --- Кнопка СТАРТ --- */
 #start-btn {
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -297,14 +296,12 @@ body {
         inset 0 0 30px #fff;
 }
 
-/* Блокировка кликов */
 .board.blocked .btn {
     pointer-events: none;
     cursor: default;
     filter: grayscale(0.6) brightness(0.6);
 }
 
-/* --- Центральный круг --- */
 .center-circle {
     position: absolute;
     top: 50%;
@@ -345,7 +342,6 @@ body {
     }
 }
 
-/* --- Сообщения --- */
 .message {
     margin-top: 25px;
     font-size: 1rem;
@@ -367,7 +363,6 @@ body {
     52% { opacity: 1; }
 }
 
-/* --- Адаптив --- */
 @media (max-width: 480px) {
     .game-container {
         padding: 25px 20px;

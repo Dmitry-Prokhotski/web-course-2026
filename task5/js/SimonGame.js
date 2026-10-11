@@ -25,11 +25,6 @@ export class SimonGame {
         this.sequence.push(randomColor);
         return this.level;
     }
-
-    /**
-     * Проверяет ход игрока.
-     * @returns {'wrong' | 'continue' | 'round_complete'}
-     */
     
     checkPlayerMove(index) {
         this.playerSequence.push(index);

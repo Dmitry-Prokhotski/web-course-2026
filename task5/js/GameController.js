@@ -3,7 +3,6 @@ export class GameController {
         this.game = game;
         this.ui = ui;
 
-        // Подписываемся на события UI
         this.ui.onStartClick(() => this.handleStart());
         this.ui.onButtonClick((index) => this.handlePlayerClick(index));
     }
