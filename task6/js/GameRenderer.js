@@ -1,118 +1,133 @@
 /**
- * GameRenderer — вид игры.
- * Рисует на Canvas на основе переданного состояния.
- * Не знает про правила игры.
+ * GameRenderer — вид игры в стиле Super Mario Bros.
+ * Рисует небо, кирпичную землю, зелёную змейку-«трубку» и жёлтые монетки.
  */
 export class GameRenderer {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+
+        // --- Палитра Mario ---
+        this.COLORS = {
+            sky:        '#5c94fc',   // голубое небо
+            skyDarker:  '#4a7fd4',   // чуть темнее для градиента
+            brick:      '#c84c0c',   // кирпичный оранжевый
+            brickDark:  '#8b2f00',   // тёмный кирпич
+            mortar:     '#000000',   // чёрные швы кирпичей
+            snakeHead:  '#00b800',   // ярко-зелёный (как трубка)
+            snakeBody:  '#008000',   // средний зелёный
+            snakeDark:  '#004000',   // тёмно-зелёный для обводки
+            apple:      '#ffde00',   // жёлтый (как монетка)
+            appleDark:  '#8b6f00',   // тёмная обводка монеты
+            cloud:      '#ffffff'
+        };
+
+        // Отключаем сглаживание для чётких пикселей
+        this.ctx.imageSmoothingEnabled = false;
     }
 
-    // --- Полная очистка canvas ---
+    // --- Очистка и отрисовка фона (небо + облака) ---
     clear() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        // Небо — градиент от светлого к чуть тёмному
+        const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+        gradient.addColorStop(0, this.COLORS.sky);
+        gradient.addColorStop(1, this.COLORS.skyDarker);
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Пиксельные облака на фоне (декорация)
+        this.drawPixelCloud(50, 40);
+        this.drawPixelCloud(280, 80);
+        this.drawPixelCloud(180, 25);
     }
 
-    // --- Главный метод: нарисовать всё состояние ---
+    // --- Одно пиксельное облако ---
+    drawPixelCloud(x, y) {
+        const p = 6; // размер "пикселя" облака
+        this.ctx.fillStyle = this.COLORS.cloud;
+        // Форма облака из квадратиков
+        this.ctx.fillRect(x, y + p, p * 3, p);       // верхняя часть
+        this.ctx.fillRect(x + p, y, p * 2, p);       // пик
+        this.ctx.fillRect(x - p, y + p, p, p);       // левый выступ
+        this.ctx.fillRect(x + p * 3, y + p, p, p);   // правый выступ
+        this.ctx.fillRect(x, y + p * 2, p * 3, p);   // низ
+    }
+
+    // --- Главный метод ---
     draw(game) {
         this.clear();
-
         this.drawApple(game.getApple(), game.getCellSize());
         this.drawSnake(game.getSnake(), game.getCellSize());
     }
 
-    // --- Рисование змейки ---
+    // --- Змейка как зелёная трубка Mario ---
     drawSnake(snake, cellSize) {
         snake.forEach((segment, index) => {
+            const x = segment.x * cellSize;
+            const y = segment.y * cellSize;
             const isHead = index === 0;
-            this.drawSegment(segment, cellSize, isHead);
+
+            // Основной блок
+            this.ctx.fillStyle = isHead ? this.COLORS.snakeHead : this.COLORS.snakeBody;
+            this.ctx.fillRect(x, y, cellSize, cellSize);
+
+            // Внутренняя светлая полоса (эффект "трубы" — блик)
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            this.ctx.fillRect(x + 2, y + 2, 3, cellSize - 4);
+
+            // Тёмная обводка вокруг — как контур в Марио
+            this.ctx.strokeStyle = this.COLORS.snakeDark;
+            this.ctx.lineWidth = 2;
+            this.ctx.strokeRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+
+            // Пиксельные глазки на голове
+            if (isHead) {
+                this.drawEyes(x, y, cellSize);
+            }
         });
     }
 
-    // --- Один сегмент змейки ---
-    drawSegment(segment, cellSize, isHead) {
-        const x = segment.x * cellSize;
-        const y = segment.y * cellSize;
-        const padding = 2;
-
-        this.ctx.save();
-
-        if (isHead) {
-            // Голова — ярче, с сильным свечением
-            this.ctx.shadowColor = '#00ffff';
-            this.ctx.shadowBlur = 20;
-            this.ctx.fillStyle = '#00ffff';
-            this.roundRect(x + padding, y + padding, cellSize - padding * 2, cellSize - padding * 2, 6);
-            this.ctx.fill();
-
-            // Глаза на голове (декоративно)
-            this.drawEyes(x, y, cellSize);
-        } else {
-            // Тело — с градиентом от бирюзового к зелёному
-            this.ctx.shadowColor = '#00ff88';
-            this.ctx.shadowBlur = 12;
-            this.ctx.fillStyle = '#00ff88';
-            this.roundRect(x + padding, y + padding, cellSize - padding * 2, cellSize - padding * 2, 5);
-            this.ctx.fill();
-        }
-
-        this.ctx.restore();
-    }
-
-    // --- Декоративные "глаза" на голове ---
+    // --- Глаза змейки (белые с чёрными зрачками) ---
     drawEyes(x, y, cellSize) {
-        const eyeRadius = cellSize * 0.1;
-        const offset = cellSize * 0.3;
-        this.ctx.fillStyle = '#05010f';
-        this.ctx.shadowBlur = 0;
+        const eyeSize = 4;
+        const padding = 4;
 
-        this.ctx.beginPath();
-        this.ctx.arc(x + offset, y + offset, eyeRadius, 0, Math.PI * 2);
-        this.ctx.fill();
+        // Белки
+        this.ctx.fillStyle = '#fff';
+        this.ctx.fillRect(x + padding, y + padding, eyeSize, eyeSize);
+        this.ctx.fillRect(x + cellSize - padding - eyeSize, y + padding, eyeSize, eyeSize);
 
-        this.ctx.beginPath();
-        this.ctx.arc(x + cellSize - offset, y + offset, eyeRadius, 0, Math.PI * 2);
-        this.ctx.fill();
+        // Зрачки
+        this.ctx.fillStyle = '#000';
+        this.ctx.fillRect(x + padding + 1, y + padding + 1, 2, 2);
+        this.ctx.fillRect(x + cellSize - padding - eyeSize + 1, y + padding + 1, 2, 2);
     }
 
-    // --- Рисование яблока ---
+    // --- Яблоко как жёлтая монетка Mario ---
     drawApple(apple, cellSize) {
-        const cx = apple.x * cellSize + cellSize / 2;
-        const cy = apple.y * cellSize + cellSize / 2;
-        const radius = cellSize * 0.35;
+        const x = apple.x * cellSize;
+        const y = apple.y * cellSize;
+        const cx = x + cellSize / 2;
+        const cy = y + cellSize / 2;
+        const r = cellSize * 0.4;
 
-        this.ctx.save();
-        this.ctx.shadowColor = '#ff0055';
-        this.ctx.shadowBlur = 20;
-        this.ctx.fillStyle = '#ff0055';
-
+        // Круг монетки (жёлтый)
+        this.ctx.fillStyle = this.COLORS.apple;
         this.ctx.beginPath();
-        this.ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        this.ctx.arc(cx, cy, r, 0, Math.PI * 2);
         this.ctx.fill();
 
-        // Блик на яблоке
-        this.ctx.shadowBlur = 0;
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-        this.ctx.beginPath();
-        this.ctx.arc(cx - radius * 0.3, cy - radius * 0.3, radius * 0.25, 0, Math.PI * 2);
-        this.ctx.fill();
+        // Тёмная обводка
+        this.ctx.strokeStyle = this.COLORS.appleDark;
+        this.ctx.lineWidth = 2;
+        this.ctx.stroke();
 
-        this.ctx.restore();
-    }
+        // Внутренний квадрат — "отверстие" монеты (имитация рельефа)
+        this.ctx.fillStyle = this.COLORS.appleDark;
+        this.ctx.fillRect(cx - 3, cy - 5, 6, 10);
 
-    // --- Утилита: скруглённый прямоугольник ---
-    roundRect(x, y, width, height, radius) {
-        this.ctx.beginPath();
-        this.ctx.moveTo(x + radius, y);
-        this.ctx.lineTo(x + width - radius, y);
-        this.ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        this.ctx.lineTo(x + width, y + height - radius);
-        this.ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        this.ctx.lineTo(x + radius, y + height);
-        this.ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        this.ctx.lineTo(x, y + radius);
-        this.ctx.quadraticCurveTo(x, y, x + radius, y);
-        this.ctx.closePath();
+        // Блик сверху (светлый пиксель)
+        this.ctx.fillStyle = '#fff';
+        this.ctx.fillRect(cx - r + 3, cy - r + 3, 3, 3);
     }
 }
