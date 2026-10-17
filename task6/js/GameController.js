@@ -1,7 +1,3 @@
-/**
- * GameController — контроллер игры «Змейка».
- * Управляет игровым циклом и вводом с клавиатуры.
- */
 export class GameController {
     constructor(game, renderer, ui) {
         this.game = game;

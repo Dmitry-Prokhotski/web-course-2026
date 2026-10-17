@@ -1,7 +1,3 @@
-/**
- * SnakeGame — модель игры «Змейка».
- * Хранит состояние и правила. Не знает про Canvas и DOM.
- */
 export class SnakeGame {
     constructor(config = {}) {
         this.cellSize = config.cellSize ?? 20;      

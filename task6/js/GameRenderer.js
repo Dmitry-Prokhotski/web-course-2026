@@ -1,7 +1,3 @@
-/**
- * GameRenderer — вид игры в стиле Super Mario Bros.
- * Рисует небо, кирпичную землю, зелёную змейку-«трубку» и жёлтые монетки.
- */
 export class GameRenderer {
     constructor(canvas) {
         this.canvas = canvas;

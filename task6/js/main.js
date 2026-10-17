@@ -2,10 +2,6 @@ import { SnakeGame } from './SnakeGame.js';
 import { GameRenderer } from './GameRenderer.js';
 import { GameController } from './GameController.js';
 
-/**
- * Небольшой "UI"-класс для работы с HTML-элементами вокруг канваса.
- * Не путать с рендером — тот рисует на Canvas, а этот управляет DOM.
- */
 class GameUI {
     constructor() {
         this.scoreDisplay = document.getElementById('score');
