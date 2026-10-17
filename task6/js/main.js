@@ -34,7 +34,6 @@ class GameUI {
     }
 }
 
-// --- Точка входа ---
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('game-canvas');
 
@@ -49,9 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ui = new GameUI();
     const controller = new GameController(game, renderer, ui);
 
-    // Кнопки "Заново" — и обычная, и в оверлее
     ui.onRestartClick(() => controller.restart());
 
-    // Первый запуск
     controller.start();
 });
